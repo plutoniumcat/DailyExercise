@@ -1,0 +1,1 @@
+MAIN_MENU_ITEMS = 4
