@@ -22,14 +22,16 @@ def get_menu_selection(number_of_menu_items):
         elif not menu_selection.isnumeric():
             print("Invalid menu selection. Enter a number, or 'q' to quit: ")
             continue
-        elif int(menu_selection) > number_of_menu_items:
+        elif int(menu_selection) > number_of_menu_items or int(menu_selection) == 0:
             print("Invalid menu selection. Enter a number, or 'q' to quit: ")
             continue
         else:
             return int(menu_selection)
 
 def press_enter_to_continue():
-    input("Press enter to continue")
+    user_input = input("Press enter to continue")
+    if user_input == "q":
+        quit_function()
 
 def display_main_menu():
             os.system('clear')
