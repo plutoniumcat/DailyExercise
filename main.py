@@ -5,10 +5,17 @@ def main():
     # Main Menu loop
     while True:
         try:
+            open_log_file()
             display_main_menu()
         except FloatingPointError:
             print("Thank you for using DailyExercise.")
             exit()
+
+def open_log_file():
+    if not os.path.isfile(DEFAULT_CSV):
+        log = open(DEFAULT_CSV, "w")
+    else:
+        log = open(DEFAULT_CSV, "a")
 
 def quit_function():
     # TODO Save file before exiting

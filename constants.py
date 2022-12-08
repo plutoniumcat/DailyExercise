@@ -1,1 +1,2 @@
 MAIN_MENU_ITEMS = 4
+DEFAULT_CSV = "log.csv"
