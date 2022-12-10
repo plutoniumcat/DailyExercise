@@ -8,13 +8,8 @@ def main():
     # Main Menu loop
     while True:
         try:
-            if not os.path.isfile(constants.DEFAULT_CSV):
-                log = open(constants.DEFAULT_CSV, "w")
-            else:
-                log = open(constants.DEFAULT_CSV, "a")
             display_main_menu()
         except FloatingPointError:
-            log.close()
             print("Thank you for using DailyExercise.")
             exit()
 
@@ -63,12 +58,6 @@ def get_todays_workout():
     # TODO check if today's workout already recorded
     todays_workout = Workout(date.today(), {})
     todays_workout.get_workout_from_user()
-    # TODO Save workout to CSV file
-    # for key in todays_workout_dict:
-    #     # open csv file
-    #     # get column headers
-    #     # write reps to appropriate columns
-    #     pass
 
 def add_new_exercise_menu():
     os.system('clear')
