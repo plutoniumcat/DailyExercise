@@ -34,8 +34,6 @@ class Workout:
         pass
 
     def write_workout_to_csv(self):
-        # TODO Save workout to CSV file
-        # TODO Check if csv file is new or if there is an existing one
         # create dictionary with every exercise in exercise list
         write_to_csv_dict = {}
         for exercise in constants.EXERCISE_LIST:
@@ -44,4 +42,4 @@ class Workout:
             write_to_csv_dict[key] = self.workout_dict[key]
         with open(constants.DEFAULT_CSV, "a") as log:
             writer = csv.writer(log)
-            writer.writerow(write_to_csv_dict.items)
+            writer.writerow(write_to_csv_dict.values())
