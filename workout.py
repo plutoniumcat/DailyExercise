@@ -35,7 +35,7 @@ class Workout:
 
     def write_workout_to_csv(self):
         # create dictionary with every exercise in exercise list
-        write_to_csv_dict = {}
+        write_to_csv_dict = {"date": self.date}
         for exercise in constants.EXERCISE_LIST:
             write_to_csv_dict[exercise] = 0
         for key in self.workout_dict:

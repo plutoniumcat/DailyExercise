@@ -18,9 +18,10 @@ def main():
 def initialize_log():
     # Create log and input column headers if log does not already exist
     if not os.path.isfile(constants.DEFAULT_CSV):
+        header_list = ["DATE"] + constants.EXERCISE_LIST
         with open(constants.DEFAULT_CSV, "w") as log:
             writer = csv.writer(log, delimiter=",")
-            writer.writerow(constants.EXERCISE_LIST)
+            writer.writerow(header_list)
 
 def quit_function():
     raise FloatingPointError
