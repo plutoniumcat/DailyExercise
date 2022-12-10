@@ -1,5 +1,8 @@
 import os
+from datetime import date
 import constants
+from workout import Workout
+
 
 def main():
     # Main Menu loop
@@ -16,7 +19,6 @@ def main():
             exit()
 
 def quit_function():
-    # TODO Save file before exiting
     raise FloatingPointError
 
 def get_menu_selection(number_of_menu_items):
@@ -53,9 +55,20 @@ def display_main_menu():
 
 def todays_workout_menu():
     os.system('clear')
-    print("TODO: Add today's workout submenu")
+    get_todays_workout()
     press_enter_to_continue()
     display_main_menu()
+
+def get_todays_workout():
+    # TODO check if today's workout already recorded
+    todays_workout = Workout(date.today(), {})
+    todays_workout.get_workout_from_user()
+    # TODO Save workout to CSV file
+    # for key in todays_workout_dict:
+    #     # open csv file
+    #     # get column headers
+    #     # write reps to appropriate columns
+    #     pass
 
 def add_new_exercise_menu():
     os.system('clear')
@@ -74,6 +87,5 @@ def history_menu():
     print("TODO: Add history submenu")
     press_enter_to_continue()
     display_main_menu()
-
 
 main()
