@@ -8,28 +8,43 @@ class Workout:
         self.date = date
         self.confirmation = confirmation
 
-    def get_workout_from_user(self):
-        user_input = ""
-        while True:
-            user_input = input("Now editing today's workout.\nEnter an exercise followed by a number "
-            "(reps or duration) e.g. 'push-up 20'. Type 'f' when finished: ")
-            if user_input.lower() == "f":
-                break
+    def check_for_todays_workout(self):
+        # Open log file and check if there is an existing workout for today
+        with open(constants.DEFAULT_CSV, "r") as log:
+            for line in log:
+                pass
+            last_line = line
+            if self.date in last_line:
+                return True
             else:
-                try:
-                    # Separate number from exercise name
-                    number = user_input.split()[-1]
-                    # Remove number and extra space from end of exercise name
-                    exercise_name = user_input[:-(len(number) + 1)]
-                    if exercise_name not in constants.EXERCISE_LIST:
-                        print("Error: Exercise type not recognized.")
-                    elif not number.isnumeric():
-                        print("Error: Exercise reps or duration must be numeric.")
-                    else:
-                        self.workout_dict[exercise_name] = number
-                except Exception as e:
-                    # TODO create specific exception handling
-                    print(e)
+                return False
+
+    def get_workout_from_user(self):
+        if not self.check_for_todays_workout():
+            while True:
+                user_input = input("Now editing today's workout.\nEnter an exercise followed by a number "
+                "(reps or duration) e.g. 'push-up 20'. Type 'f' when finished: ")
+                if user_input.lower() == "f":
+                    break
+                else:
+                    try:
+                        # Separate number from exercise name
+                        number = user_input.split()[-1]
+                        # Remove number and extra space from end of exercise name
+                        exercise_name = user_input[:-(len(number) + 1)]
+                        if exercise_name not in constants.EXERCISE_LIST:
+                            print("Error: Exercise type not recognized.")
+                        elif not number.isnumeric():
+                            print("Error: Exercise reps or duration must be numeric.")
+                        else:
+                            self.workout_dict[exercise_name] = number
+                    except Exception as e:
+                        # TODO create specific exception handling
+                        print(e)
+        else:
+            print("Error: You have already logged a workout for today. "
+            "To edit previous workouts, use the History menu.")
+            return
 
     def show_workout(self):
         os.system('clear')
@@ -41,19 +56,21 @@ class Workout:
         self.get_workout_from_user()
 
     def confirm_workout(self):
-        user_input = ""
-        while True:
-            self.show_workout()
-            user_input = input("Log this workout? 'Y' for 'yes', 'e' for 'edit' or 'q' for quit. ")
-            if user_input.lower() == "q":
-                return
-            elif user_input.lower() == "y":
-                self.confirmation = True
-                return
-            elif user_input.lower() == "e":
-                self.edit_workout()
-            else:
-                continue
+        if self.workout_dict == {}:
+            return
+        else:
+            while True:
+                self.show_workout()
+                user_input = input("Log this workout? 'Y' for 'yes', 'e' for 'edit' or 'q' for quit. ")
+                if user_input.lower() == "q":
+                    return
+                elif user_input.lower() == "y":
+                    self.confirmation = True
+                    return
+                elif user_input.lower() == "e":
+                    self.edit_workout()
+                else:
+                    continue
 
     def write_workout_to_csv(self):
         # create dictionary with every exercise in exercise list
