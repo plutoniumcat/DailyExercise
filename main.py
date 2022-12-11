@@ -40,7 +40,6 @@ def display_main_menu():
 
 def todays_workout():
     os.system('clear')
-    # TODO check if today's workout already recorded
     todays_workout = Workout(str(date.today()), {}, False)
     todays_workout.get()
     press_enter_to_continue()

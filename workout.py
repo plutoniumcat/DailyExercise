@@ -73,11 +73,12 @@ class Workout:
                     continue
 
     def write_workout_to_csv(self):
-        # create dictionary with every exercise in exercise list
         if self.confirmation == True:
             write_to_csv_dict = {"date": self.date}
+            # Create comprehensive dictionary with every exercise in exercise list
             for exercise in constants.EXERCISE_LIST:
                 write_to_csv_dict[exercise] = 0
+            # Copy today's workout into comprehensive dictionary
             for key in self.workout_dict:
                 write_to_csv_dict[key] = self.workout_dict[key]
             with open(constants.DEFAULT_CSV, "a") as log:
