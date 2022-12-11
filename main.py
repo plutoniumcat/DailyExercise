@@ -67,7 +67,7 @@ def todays_workout_menu():
 
 def get_todays_workout():
     # TODO check if today's workout already recorded
-    todays_workout = Workout(date.today(), {})
+    todays_workout = Workout(date.today(), {}, False)
     todays_workout.get_workout_from_user()
     todays_workout.write_workout_to_csv()
 
