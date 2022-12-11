@@ -3,7 +3,7 @@ import csv
 from datetime import date
 import constants
 from workout import Workout
-
+from newexercise import NewExercise
 
 def main():
     # Main Menu loop
@@ -72,7 +72,8 @@ def get_todays_workout():
 
 def add_new_exercise_menu():
     os.system('clear')
-    print("TODO: Add new exercise submenu")
+    new_exercise = NewExercise("", "")
+    new_exercise.get()
     press_enter_to_continue()
     display_main_menu()
 
