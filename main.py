@@ -48,7 +48,7 @@ def press_enter_to_continue():
 def display_main_menu():
             os.system('clear')
             print("Main Menu\n1. Log today's workout\n2. Add new exercise type\n3. Streaks"
-            "\n4. History\nEnter a number, or 'q' to quit: ")
+            "\n4. History")
             main_menu_selection = get_menu_selection(constants.MAIN_MENU_ITEMS)
             if main_menu_selection == 1:
                 todays_workout_menu()
@@ -68,8 +68,7 @@ def todays_workout_menu():
 def get_todays_workout():
     # TODO check if today's workout already recorded
     todays_workout = Workout(date.today(), {}, False)
-    todays_workout.get_workout_from_user()
-    todays_workout.write_workout_to_csv()
+    todays_workout.get()
 
 def add_new_exercise_menu():
     os.system('clear')

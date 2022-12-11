@@ -1,3 +1,4 @@
+import os
 import csv
 import constants
 
@@ -10,8 +11,8 @@ class Workout:
     def get_workout_from_user(self):
         user_input = ""
         while True:
-            user_input = input("Enter an exercise followed by a number (reps or duration) "
-                "e.g. 'push-up 20'. Type 'f' when finished: ")
+            user_input = input("Now editing today's workout.\nEnter an exercise followed by a number "
+            "(reps or duration) e.g. 'push-up 20'. Type 'f' when finished: ")
             if user_input.lower() == "f":
                 break
             else:
@@ -30,26 +31,29 @@ class Workout:
                     # TODO create specific exception handling
                     print(e)
 
-    def edit_workout(self):
-    # TODO enable user to edit workout
-        pass
+    def show_workout(self):
+        os.system('clear')
+        for key, value in self.workout_dict.items():
+            print(key, value)
 
+    def edit_workout(self):
+        self.show_workout()
+        self.get_workout_from_user()
 
     def confirm_workout(self):
-        # TODO Display workout information to user and ask them to confirm
         user_input = ""
         while True:
+            self.show_workout()
+            user_input = input("Log this workout? 'Y' for 'yes', 'e' for 'edit' or 'q' for quit. ")
             if user_input.lower() == "q":
                 return
             elif user_input.lower() == "y":
                 self.confirmation = True
+                return
             elif user_input.lower() == "e":
                 self.edit_workout()
             else:
                 continue
-            for key, value in self.workout_dict:
-                print(key, value)
-            user_input = input("Log this workout? 'Y' for 'yes', 'e' for 'edit' or 'q' for quit.")
 
     def write_workout_to_csv(self):
         # create dictionary with every exercise in exercise list
@@ -64,3 +68,8 @@ class Workout:
                 writer.writerow(write_to_csv_dict.values())
         else:
             return
+
+    def get(self):
+        self.get_workout_from_user()
+        self.confirm_workout()
+        self.write_workout_to_csv()
