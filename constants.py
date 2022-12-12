@@ -1,6 +1,8 @@
+from getexercisedict import get_exercise_dict
+
 MAIN_MENU_ITEMS = 4
 
-
 DEFAULT_CSV = "log.csv"
-EXERCISE_LIST = [line.rstrip() for line in open('exerciselist.txt')]
-EXERCISE_FILE = "exerciselist.txt"
+EXERCISE_FILE = "exerciselist.csv"
+EXERCISE_DICT = get_exercise_dict()
+EXERCISE_LIST = list(EXERCISE_DICT.keys())
