@@ -61,7 +61,7 @@ def streaks_menu():
         # TODO view_current_streaks()
         pass
     elif streak_menu_selection == 2:
-        new_streak_condition = StreakConditions("", "")
+        new_streak_condition = StreakConditions("", "", False)
         new_streak_condition.define_streak_conditions()
     elif streak_menu_selection == 3:
         # TODO change_streak_conditions()
