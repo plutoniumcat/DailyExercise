@@ -5,6 +5,7 @@ import constants
 from menufunctions import *
 from workout import Workout
 from newexercise import NewExercise
+from streakconditions import StreakConditions
 
 def main():
     # Main Menu loop
@@ -54,7 +55,17 @@ def add_new_exercise():
 
 def streaks_menu():
     os.system('clear')
-    print("TODO: Add streaks submenu")
+    print("Streaks\n1. View current streaks\n2. Define streak conditions\n3. Change streak conditions")
+    streak_menu_selection = get_menu_selection(constants.STREAK_MENU_ITEMS)
+    if streak_menu_selection == 1:
+        # TODO view_current_streaks()
+        pass
+    elif streak_menu_selection == 2:
+        new_streak_condition = StreakConditions("", "")
+        new_streak_condition.define_streak_conditions()
+    elif streak_menu_selection == 3:
+        # TODO change_streak_conditions()
+        pass
     press_enter_to_continue()
     display_main_menu()
 
