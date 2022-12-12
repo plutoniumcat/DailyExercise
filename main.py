@@ -26,7 +26,7 @@ def initialize_log():
             writer.writerow(header_list)
 
 def display_main_menu():
-            os.system('clear')
+            clear_screen()
             print("Main Menu\n1. Log today's workout\n2. Add new exercise type\n3. Streaks"
             "\n4. History")
             main_menu_selection = get_menu_selection(constants.MAIN_MENU_ITEMS)
@@ -40,21 +40,21 @@ def display_main_menu():
                 history_menu()
 
 def todays_workout():
-    os.system('clear')
+    clear_screen()
     todays_workout = Workout(str(date.today()), {}, False)
     todays_workout.get()
     press_enter_to_continue()
     display_main_menu()
 
 def add_new_exercise():
-    os.system('clear')
+    clear_screen()
     new_exercise = NewExercise("", "")
     new_exercise.get()
     press_enter_to_continue()
     display_main_menu()
 
 def streaks_menu():
-    os.system('clear')
+    clear_screen()
     print("Streaks\n1. View current streaks\n2. Define streak conditions\n3. Change streak conditions")
     streak_menu_selection = get_menu_selection(constants.STREAK_MENU_ITEMS)
     if streak_menu_selection == 1:
@@ -70,7 +70,7 @@ def streaks_menu():
     display_main_menu()
 
 def history_menu():
-    os.system('clear')
+    clear_screen()
     print("TODO: Add history submenu")
     press_enter_to_continue()
     display_main_menu()

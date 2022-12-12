@@ -1,3 +1,12 @@
+import platform
+import os
+
+def clear_screen():
+    if platform.system() == "Windows":
+        os.system("cls")
+    else:
+        os.system("clear")
+
 def quit_function():
     raise FloatingPointError
 
