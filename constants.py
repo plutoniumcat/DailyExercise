@@ -1,7 +1,7 @@
 from getsaveddata import *
 
 MAIN_MENU_ITEMS = 4
-STREAK_MENU_ITEMS = 3
+STREAK_MENU_ITEMS = 2
 
 DEFAULT_CSV = "log.csv"
 EXERCISE_FILE = "exerciselist.csv"
