@@ -2,6 +2,7 @@ import csv
 from datetime import datetime, date
 import pandas
 import constants
+from getsaveddata import get_last_log_date
 
 class CurrentStreaksAlert:
     def __init__(self, exercise_list) -> None:
@@ -53,18 +54,17 @@ class CurrentStreak:
             return True # Streak continues through current week
 
     def find_current_streak_length(self):
-        log = pandas.read_csv(constants.DEFAULT_CSV)
-        # Check most recent date in log against current date and compare against streak rule
-        log_dates = log["DATE"].tolist()
-        # Return 0 if log is blank
-        if len(log_dates) == 0:
+        last_log_date = get_last_log_date()
+        # If there are no previous logs return 0
+        if last_log_date == 0:
             return 0
-        most_recent_date = datetime.strptime(log_dates[-1], "%Y-%m-%d")
+        most_recent_date = datetime.strptime(last_log_date, "%Y-%m-%d")
         today = datetime.today()
         log_age = (most_recent_date - today).days
         if log_age > self.rule:
             return 0 # No current streak
         # Get all history for selected exercise, adding zeros to account for log age, then reverse it
+        log = pandas.read_csv(constants.DEFAULT_CSV)
         exercise_history = log[self.exercise].tolist()
         for i in range(log_age):
             exercise_history.append(0)

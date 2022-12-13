@@ -1,6 +1,7 @@
 import os
 import csv
 import constants
+from getsaveddata import get_last_log_date
 from currentstreaks import CurrentStreaksAlert
 
 class Workout:
@@ -11,14 +12,11 @@ class Workout:
 
     def check_for_todays_workout(self):
         # Open log file and check if there is an existing workout for today
-        with open(constants.DEFAULT_CSV, "r") as log:
-            for line in log:
-                pass
-            last_line = line
-            if self.date in last_line:
-                return True
-            else:
-                return False
+        last_log = get_last_log_date()
+        if self.date == last_log:
+            return True
+        else:
+            return False
 
     def get_workout_from_user(self):
         if not self.check_for_todays_workout():
@@ -85,12 +83,11 @@ class Workout:
             with open(constants.DEFAULT_CSV, "a") as log:
                 writer = csv.writer(log)
                 writer.writerow(write_to_csv_dict.values())
-        else:
-            return
 
     def streak_alert(self):
-        streak_alert = CurrentStreaksAlert(list(self.workout_dict.keys()))
-        streak_alert.current_streaks_alert()
+        if self.confirmation == True:
+            streak_alert = CurrentStreaksAlert(list(self.workout_dict.keys()))
+            streak_alert.current_streaks_alert()
 
     def get(self):
         self.get_workout_from_user()

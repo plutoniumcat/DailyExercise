@@ -25,6 +25,10 @@ def initialize_log():
         with open(constants.DEFAULT_CSV, "w") as log:
             writer = csv.writer(log, delimiter=",")
             writer.writerow(header_list)
+    else:
+        # TODO Check if last workout was earlier than yesterday
+        pass
+
 
 def display_main_menu():
             clear_screen()
