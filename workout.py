@@ -1,6 +1,7 @@
 import os
 import csv
 import constants
+from currentstreaks import CurrentStreaksAlert
 
 class Workout:
     def __init__(self, date, workout_dict, confirmation):
@@ -87,7 +88,12 @@ class Workout:
         else:
             return
 
+    def streak_alert(self):
+        streak_alert = CurrentStreaksAlert(list(self.workout_dict.keys()))
+        streak_alert.current_streaks_alert()
+
     def get(self):
         self.get_workout_from_user()
         self.confirm_workout()
         self.write_workout_to_csv()
+        self.streak_alert()

@@ -83,14 +83,17 @@ class CurrentStreak:
                 else:
                     break
         # Continue moving cursor2 forward until the break is found
-        for i in range(6):
-            zero_counter = 0
-            for i in range(self.rule):
-                if exercise_history[(cursor2 + i)] == 0:
-                    zero_counter += 1
-            if zero_counter == self.rule:
-                break
-            cursor2 += 1
+        try:
+            for i in range(6):
+                zero_counter = 0
+                for i in range(self.rule):
+                    if exercise_history[(cursor2 + i)] == 0:
+                        zero_counter += 1
+                if zero_counter == self.rule:
+                    break
+                cursor2 += 1
+        except IndexError:
+            pass
         # cursor2 now contains the length of the streak in days
         return cursor2
 
