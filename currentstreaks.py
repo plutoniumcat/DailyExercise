@@ -4,9 +4,20 @@ import pandas
 import constants
 
 class CurrentStreaksAlert:
-    def __init__(self) -> None:
-        # TODO Takes a list of exercises and generates CurrentStreak objects for them
-        pass
+    def __init__(self, exercise_list) -> None:
+        self.exercise_list = exercise_list
+    
+    def current_streaks_alert(self):
+        streaks_list = []
+        for exercise in self.exercise_list:
+            streak = CurrentStreak(exercise, "")
+            if streak.current_streak():
+                streaks_list.append(streak.current_streak())
+        if streaks_list == []:
+            print("No current streaks")
+        else:
+            for item in streaks_list:
+                print(item)
 
 class CurrentStreak:
     def __init__(self, exercise, rule) -> None:
@@ -45,6 +56,9 @@ class CurrentStreak:
         log = pandas.read_csv(constants.DEFAULT_CSV)
         # Check most recent date in log against current date and compare against streak rule
         log_dates = log["DATE"].tolist()
+        # Return 0 if log is blank
+        if len(log_dates) == 0:
+            return 0
         most_recent_date = datetime.strptime(log_dates[-1], "%Y-%m-%d")
         today = datetime.today()
         log_age = (most_recent_date - today).days
@@ -81,10 +95,16 @@ class CurrentStreak:
         return cursor2
 
     def current_streak(self):
-        self.set_exercise()
         self.set_streak_rule()
         current_streak = self.find_current_streak_length()
         if current_streak:
-            print("Your current streak for " + self.exercise + " is " + str(current_streak) + " days.")
+            return "Your current streak for " + self.exercise + " is " + str(current_streak) + " days."
+        else:
+            return False
+
+    def check_for_streak(self):
+        self.set_exercise()
+        if self.current_streak():
+            print(self.current_streak())
         else:
             print("No current streak for " + self.exercise + ".")
