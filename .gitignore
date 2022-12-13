@@ -3,3 +3,5 @@ venv/
 .venv/
 log.csv
 exercise_list.txt
+test.py
+dummylog.csv

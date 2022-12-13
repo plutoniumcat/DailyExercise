@@ -37,27 +37,29 @@ class StreakConditions:
         "Four times a week\n7. Five times a week\n8. Six times a week")
         selection = get_menu_selection(8)
         if selection == 1:
-            rule = "every day"
+            rule = 0
         elif selection == 2:
-            rule = "every second day"
+            rule = 8
         elif selection == 3:
-            rule = "once a week"
+            rule = 6
         elif selection == 4:
-            rule = "twice a week"
+            rule = 5
         elif selection == 5:
-            rule = "three times a week"
+            rule = 4
         elif selection == 6:
-            rule = "four times a week"
+            rule = 3
         elif selection == 7:
-            rule = "five times a week"
+            rule = 2
         elif selection == 8:
-            rule = "six times a week"
+            rule = 1
         self.rule = rule
         return
 
     def save_streak_conditions(self):
         streak_conditions = self.exercise + "," + self.rule + "\n"
-        print(streak_conditions)
+        rule_list = ["every day", "six times a week", "five times a week", "four times a week", 
+        "three times a week", "twice a week", "once a week", "every second day"]
+        print(self.exercise + ", " + rule_list[self.rule])
         user_input = input("Confirm new streak conditions? Y/N ")
         if user_input.lower() == "y":
             if self.overwrite == False:
