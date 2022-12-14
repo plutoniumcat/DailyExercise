@@ -21,7 +21,7 @@ class History:
 
     def set_history(self):
         log = pandas.read_csv(constants.DEFAULT_CSV)
-        history = log[self.exercise].tolist()
+        self.history = log[self.exercise].tolist()
 
     def retrieve_measurement(self):
         return constants.EXERCISE_DICT[self.exercise]
@@ -60,11 +60,16 @@ class History:
     def view_history(self):
         self.set_exercise()
         self.set_history()
+        exercise = self.exercise
         measurement = self.retrieve_measurement()
-        total_days = str(self.retrieve_total_days())
-        total_reps = str(self.retrieve_total_reps())
+        if measurement == "reps":
+            exercise = exercise + "s"
+        total_reps = self.retrieve_total_reps()
+        if measurement == "minutes" and total_reps > 59:
+            total_reps = str(total_reps//60) + " hours and " + str(total_reps % 60)
+        total_days = self.retrieve_total_days()
         increase = self.retrieve_increase()
-        print("You have done " + total_reps + " " + measurement + " of " + self.exercise + 
-        " over " + total_days + " days. " "You have increased by " + str(increase[1] - increase[0]) 
+        print("You have done " + str(total_reps) + " " + measurement + " of " + exercise + 
+        " over " + str(total_days) + " days. " "You have increased by " + str(increase[1] - increase[0]) 
         + " " + measurement + ", from " + str(increase[0]) + " " + measurement + " to "
         + str(increase[1]) + " " + measurement + ".")
