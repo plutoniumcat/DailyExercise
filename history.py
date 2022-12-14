@@ -1,5 +1,6 @@
 import pandas
 import constants
+from getsaveddata import get_longest_streak_dict
 
 class History:
     def __init__(self, exercise, history) -> None:
@@ -40,7 +41,8 @@ class History:
         return total
 
     def retrieve_longest_streak(self):
-        pass
+        streak_dict = get_longest_streak_dict()
+        return streak_dict[self.exercise]
 
     def retrieve_increase(self):
         initial = 0
@@ -69,7 +71,8 @@ class History:
             total_reps = str(total_reps//60) + " hours and " + str(total_reps % 60)
         total_days = self.retrieve_total_days()
         increase = self.retrieve_increase()
+        streak = self.retrieve_longest_streak()
         print("You have done " + str(total_reps) + " " + measurement + " of " + exercise + 
         " over " + str(total_days) + " days. " "You have increased by " + str(increase[1] - increase[0]) 
         + " " + measurement + ", from " + str(increase[0]) + " " + measurement + " to "
-        + str(increase[1]) + " " + measurement + ".")
+        + str(increase[1]) + " " + measurement + ". Your longest streak is " + str(streak) + " days.")
