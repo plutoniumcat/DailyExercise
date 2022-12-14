@@ -2,7 +2,7 @@ import csv
 from datetime import datetime, date
 import pandas
 import constants
-from getsaveddata import get_last_log_date
+from getsaveddata import get_last_log_date, get_longest_streak_dict
 
 class CurrentStreaksAlert:
     def __init__(self, exercise_list) -> None:
@@ -97,9 +97,19 @@ class CurrentStreak:
         # cursor2 now contains the length of the streak in days
         return cursor2
 
+    def update_longest_streak(self, streak):
+        streak_dict = get_longest_streak_dict()
+        if streak > streak_dict[self.exercise]:
+            streak_dict[self.exercise] = streak
+            with open("longest_streak.csv", "w") as outfile:
+                writer = csv.writer(outfile)
+                for row in streak_dict.items():
+                    writer.writerow(row)
+
     def current_streak(self):
         self.set_streak_rule()
         current_streak = self.find_current_streak_length()
+        self.update_longest_streak(current_streak)
         if current_streak:
             return "Your current streak for " + self.exercise + " is " + str(current_streak) + " days."
         else:

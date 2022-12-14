@@ -27,3 +27,8 @@ def determine_log_age(log_date):
     date = datetime.strptime(log_date, "%Y-%m-%d")
     today = datetime.today()
     return abs((date - today).days)
+
+def get_longest_streak_dict():
+    dataframe = pandas.read_csv("longest_streak.csv", header=None, index_col=0).squeeze("columns")
+    streak_dict = dataframe.to_dict()
+    return streak_dict
