@@ -1,12 +1,14 @@
 import os
 import csv
-from datetime import date
+from datetime import date, datetime, timedelta
 import constants
 from menufunctions import *
+from getsaveddata import get_last_log_date, determine_log_age
 from workout import Workout
 from newexercise import NewExercise
 from streakconditions import StreakConditions
 from currentstreaks import CurrentStreak, CurrentStreaksAlert
+from history import History
 
 def main():
     # Main Menu loop
@@ -26,9 +28,22 @@ def initialize_log():
             writer = csv.writer(log, delimiter=",")
             writer.writerow(header_list)
     else:
-        # TODO Check if last workout was earlier than yesterday
-        pass
-
+        # Check if last workout was earlier than yesterday
+        last_log_date = get_last_log_date()
+        today = date.today()
+        yesterday = str(datetime.today() - timedelta(days=1))
+        if last_log_date in [today, yesterday, 0]:
+            return
+        else:
+            # Determine how many days ago the last log was
+            log_age = determine_log_age(last_log_date)
+            # Save a row of zeros for every missed day
+            for i in reversed(range(1, log_age - 1)):
+                # Find the date
+                workout_date = (datetime.today() - timedelta(days=i)).date()
+                # Generate blank workout for that date
+                blank_workout = Workout(workout_date, {"aerobics":0}, True)
+                blank_workout.write_workout_to_csv()
 
 def display_main_menu():
             clear_screen()
@@ -76,7 +91,8 @@ def streaks_menu():
 
 def history_menu():
     clear_screen()
-    print("TODO: Add history submenu")
+    history = History("", [])
+    history.view_history()
     press_enter_to_continue()
     display_main_menu()
 

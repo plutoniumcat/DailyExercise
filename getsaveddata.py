@@ -1,4 +1,5 @@
 import csv
+from datetime import datetime
 import pandas
 import constants
 
@@ -21,3 +22,8 @@ def get_last_log_date():
         return 0
     last_log_date = log_dates[-1]
     return last_log_date
+
+def determine_log_age(log_date):
+    date = datetime.strptime(log_date, "%Y-%m-%d")
+    today = datetime.today()
+    return abs((date - today).days)
