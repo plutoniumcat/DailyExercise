@@ -26,5 +26,34 @@ A user can also view their current streaks by selecting "Streaks" from the main 
 By accessing "History" from the main menu, users can search for a particular exercise to receive information about it. This includes the total number of days on which the exercise was performed, and the total number of reps, or if the exercise is measured in time, the total number of hours and minutes spent. It also includes the increase in reps or duration, comparing the first workout to the largest one recorded. Finally, it includes the length of the longest streak on record.
 
 ## Implementation plan
+To create this app, I used Trello as a project management tracker. I created cards with user stories for each feature I wanted to include and moved them from "To Do" to "Doing" and "Done" as I made progress on them. Here is the approximate order in which I implemented each feature.
+
+1. Main menu and the ability to choose options with numeric input.
+2. Close program when the user types 'q' for quit.
+### Add workouts
+3. Get workout information from user input.
+4. Save workout information to .csv file.
+5. Ask the user to confirm the workout before saving.
+6. View and edit workout before saving.
+7. Check for date of most recent workout (to prevent the user from logging two workouts with the same date).
+### Add exercise type
+8. Get new exercise name from user input.
+9. Classify exercises by measurement type (reps or duration).
+10. Confirm that exercise name and measurement are correct.
+11. Save exercises to exercise list.
+12. Update log to contain a column for the new exercise, and fill it with 0 for all previous dates.
+### Streaks
+13. Get user-defined streak conditions.
+14. Determine current streaks.
+15. Return all current streaks to user.
+16. Notify user of current streaks when they log a workout.
+17. Allow user to search their current streaks by exercise name.
+### History
+18. Retrieve log history for a specific exercise.
+19. Calculate total days on which the exercise was performed.
+20. Calculate the total number of reps, or the total number of hours and minutes for an exercise.
+21. Find the increase in reps or time between when the user first did the exercise, and their best workout.
+22. Retrieve longest streak information.
+23. Generate report displaying all of the above in a user-friendly manner.
 
 ## Help Documentation

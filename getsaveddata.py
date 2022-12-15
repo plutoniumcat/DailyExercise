@@ -1,23 +1,15 @@
 import csv
 from datetime import datetime
 import pandas
-import constants
+from constants import DEFAULT_CSV
 
-def get_exercise_dict():
-    with open("exerciselist.csv", "r") as file:
-        reader = csv.reader(file)
-        exercise_dict = dict(reader)
-        return exercise_dict
-
-def get_streak_conditions():
-    with open("streakconditions.csv", "r") as file:
-        reader = csv.reader(file)
-        streak_conditions = dict(reader)
-        return streak_conditions
+def get_log_dates():
+    log = pandas.read_csv(DEFAULT_CSV)
+    log_dates = log["DATE"].tolist()
+    return log_dates
 
 def get_last_log_date():
-    log = pandas.read_csv(constants.DEFAULT_CSV)
-    log_dates = log["DATE"].tolist()
+    log_dates = get_log_dates()
     if len(log_dates) == 0:
         return 0
     last_log_date = log_dates[-1]

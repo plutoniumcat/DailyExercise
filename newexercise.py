@@ -1,14 +1,26 @@
 import constants
+import pandas
+from getsaveddata import get_log_dates
 
 class NewExercise:
     def __init__(self, exercise_name, measurement):
         self.exercise_name = exercise_name
         self.measurement = measurement
 
-    def save_new_exercise(self):
+    def save_to_list(self):
         string = "\n" + self.exercise_name + ", " + self.measurement
         with open(constants.EXERCISE_FILE, "a") as file:
             file.write(string)
+
+    def populate_log(self):
+        # Fill log history with zeros for new exercise
+        log_dates = get_log_dates()
+        zeroes = []
+        for i in range(len(log_dates)):
+            zeroes.append(0)
+        log = pandas.read_csv(constants.DEFAULT_CSV)
+        log[self.exercise_name] = zeroes
+        log.to_csv(constants.DEFAULT_CSV)
 
     def get_new_exercise_from_user(self):
         exercise_name = ""
@@ -41,7 +53,8 @@ class NewExercise:
             print("The new exercise is " + self.exercise_name + " measured in " + self.measurement + ".")
             user_input = input("Confirm new exercise? Y/N ")
             if user_input.lower() == "y":
-                self.save_new_exercise()
+                self.save_to_list()
+                self.populate_log()
             else:
                 return
 
