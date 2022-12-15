@@ -22,6 +22,11 @@ class NewExercise:
         log[self.exercise_name] = zeroes
         log.to_csv(constants.DEFAULT_CSV)
 
+    def save_to_longest_streak(self):
+        string = "\n" + self.exercise_name + ",0"
+        with open("longest_streak.csv", "a") as file:
+            file.write(string)
+
     def get_new_exercise_from_user(self):
         exercise_name = ""
         exercise_measurement = ""
@@ -41,7 +46,7 @@ class NewExercise:
             if exercise_measurement.lower() == "q":
                 return
             elif not exercise_measurement.lower() in ["reps", "minutes"]:
-                print("Error: Please enter either reps or minutes.")
+                print("Error: Please enter either 'reps' or 'minutes'.")
             else:
                 self.measurement = exercise_measurement.lower()
                 break
@@ -55,6 +60,7 @@ class NewExercise:
             if user_input.lower() == "y":
                 self.save_to_list()
                 self.populate_log()
+                self.save_to_longest_streak()
             else:
                 return
 
