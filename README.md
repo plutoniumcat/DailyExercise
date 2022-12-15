@@ -42,18 +42,19 @@ To create this app, I used Trello as a project management tracker. I created car
 10. Confirm that exercise name and measurement are correct.
 11. Save exercises to exercise list.
 12. Update log to contain a column for the new exercise, and fill it with 0 for all previous dates.
+13. Update longest streak file to set the longest streak for the new exercise to 0.
 ### Streaks
-13. Get user-defined streak conditions.
-14. Determine current streaks.
-15. Return all current streaks to user.
-16. Notify user of current streaks when they log a workout.
-17. Allow user to search their current streaks by exercise name.
+14. Get user-defined streak conditions.
+15. Determine current streaks.
+16. Return all current streaks to user.
+17. Notify user of current streaks when they log a workout.
+18. Allow user to search their current streaks by exercise name.
 ### History
-18. Retrieve log history for a specific exercise.
-19. Calculate total days on which the exercise was performed.
-20. Calculate the total number of reps, or the total number of hours and minutes for an exercise.
-21. Find the increase in reps or time between when the user first did the exercise, and their best workout.
-22. Retrieve longest streak information.
-23. Generate report displaying all of the above in a user-friendly manner.
+19. Retrieve log history for a specific exercise.
+20. Calculate total days on which the exercise was performed.
+21. Calculate the total number of reps, or the total number of hours and minutes for an exercise.
+22. Find the increase in reps or time between when the user first did the exercise, and their best workout.
+23. Retrieve longest streak information.
+24. Generate report displaying all of the above in a user-friendly manner.
 
 ## Help Documentation

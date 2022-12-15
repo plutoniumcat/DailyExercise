@@ -53,23 +53,26 @@ class CurrentStreak:
         else:
             return True # Streak continues through current week
 
+    def evaluate_history(self, history):
+        # Determines streak length if rule is 'every second day'
+        for i in range(len(history)):
+            if history[i] == 0 and history[i + 1] == 0:
+                return (i - 1)
+
     def find_current_streak_length(self):
         last_log_date = get_last_log_date()
         # If there are no previous logs return 0
         if last_log_date == 0:
             return 0
-        most_recent_date = datetime.strptime(last_log_date, "%Y-%m-%d")
-        today = datetime.today()
-        log_age = (most_recent_date - today).days
-        if log_age > self.rule:
-            return 0 # No current streak
-        # Get all history for selected exercise, adding zeros to account for log age, then reverse it
+        # Get all history for selected exercise then reverse it
         log = pandas.read_csv(constants.DEFAULT_CSV)
         exercise_history = log[self.exercise].tolist()
-        for i in range(log_age):
-            exercise_history.append(0)
         exercise_history.reverse()
-        # Set two cursors, one to the start of current week and the other to the most recent day in the log
+        # If streak rule is "every second day", evaluate the log against that rule
+        if self.rule == 8:
+            return self.evaluate_history(exercise_history)
+        # Set two cursors, one to the start of current week and one to most recent day in log
+        most_recent_date = datetime.strptime(last_log_date, "%Y-%m-%d")
         day_of_week = most_recent_date.weekday()
         cursor1 = day_of_week
         cursor2 = 0
@@ -98,6 +101,7 @@ class CurrentStreak:
         return cursor2
 
     def update_longest_streak(self, streak):
+        # Updates longest streak file if current streak is longer than saved streak
         streak_dict = get_longest_streak_dict()
         if streak > streak_dict[self.exercise]:
             streak_dict[self.exercise] = streak
