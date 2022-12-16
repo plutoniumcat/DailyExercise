@@ -7,3 +7,5 @@ test.py
 dummylog.csv
 test_log.csv
 test_log2.csv
+test_longeststreak.csv
+test_streakconditions.csv
