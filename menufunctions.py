@@ -28,3 +28,9 @@ def press_enter_to_continue():
     user_input = input("Press enter to continue")
     if user_input == "q":
         quit_function()
+
+def input_exercise_type():
+    user_input = input("Enter exercise type, or 'c' to cancel: ")
+    if user_input.lower() == "q":
+        quit_function()
+    return user_input

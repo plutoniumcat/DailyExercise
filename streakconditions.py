@@ -1,6 +1,6 @@
 import csv
 import constants
-from menufunctions import get_menu_selection, clear_screen
+from menufunctions import get_menu_selection, clear_screen, input_exercise_type
 
 class StreakConditions:
     def __init__(self, exercise, rule, overwrite):
@@ -11,8 +11,8 @@ class StreakConditions:
     def set_exercise(self):
         clear_screen()
         while True:
-            exercise_name = input("Enter an exercise type, or 'q to quit: ")
-            if exercise_name.lower() == "q":
+            exercise_name = exercise_name = input_exercise_type()
+            if exercise_name.lower() == 'c':
                 break
             elif exercise_name not in constants.EXERCISE_LIST:
                 print("Error: Exercise type not recognized.")

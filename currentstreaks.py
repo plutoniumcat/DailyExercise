@@ -3,6 +3,7 @@ from datetime import datetime, date
 import pandas
 import constants
 from getsaveddata import get_last_log_date, get_longest_streak_dict
+from menufunctions import input_exercise_type
 
 class CurrentStreaksAlert:
     def __init__(self, exercise_list) -> None:
@@ -27,8 +28,8 @@ class CurrentStreak:
 
     def set_exercise(self):
         while True:
-            exercise_name = input("Enter exercise type: ")
-            if exercise_name.lower() == "q":
+            exercise_name = input_exercise_type()
+            if exercise_name.lower() == "c":
                 break
             elif exercise_name not in constants.EXERCISE_LIST:
                 print("Error: Exercise type not recognized.")

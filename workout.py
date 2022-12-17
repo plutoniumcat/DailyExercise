@@ -2,6 +2,7 @@ import os
 import csv
 import constants
 from getsaveddata import get_last_log_date
+from menufunctions import quit_function
 from currentstreaks import CurrentStreaksAlert
 
 class Workout:
@@ -23,7 +24,9 @@ class Workout:
             while True:
                 user_input = input("Now editing today's workout.\nEnter an exercise followed by a number "
                 "(reps or duration) e.g. 'push-up 20'. Type 'f' when finished: ")
-                if user_input.lower() == "f":
+                if user_input.lower() == "q":
+                    quit_function()                
+                elif user_input.lower() == "f":
                     break
                 else:
                     try:

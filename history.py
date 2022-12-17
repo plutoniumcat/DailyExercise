@@ -1,6 +1,7 @@
 import pandas
 import constants
 from getsaveddata import get_longest_streak_dict
+from menufunctions import input_exercise_type
 
 class History:
     def __init__(self, exercise, history) -> None:
@@ -9,16 +10,19 @@ class History:
 
     def set_exercise(self):
         while True:
-            user_input = input("Enter exercise type: ")
-            try:
-                if user_input not in constants.EXERCISE_LIST:
-                    print("Error: Exercise type not recognized.")
-                else:
-                    self.exercise = user_input
-                    break
-            except Exception as e:
-                 # TODO create specific exception handling
-                print(e)
+            user_input = input_exercise_type()
+            if user_input.lower == "c":
+                break
+            else:
+                try:
+                    if user_input not in constants.EXERCISE_LIST:
+                        print("Error: Exercise type not recognized.")
+                    else:
+                        self.exercise = user_input
+                        break
+                except Exception as e:
+                    # TODO create specific exception handling
+                    print(e)
 
     def set_history(self):
         log = pandas.read_csv(constants.DEFAULT_CSV)
@@ -61,6 +65,8 @@ class History:
 
     def view_history(self):
         self.set_exercise()
+        if self.exercise == "":
+            return
         self.set_history()
         exercise = self.exercise
         measurement = self.retrieve_measurement()

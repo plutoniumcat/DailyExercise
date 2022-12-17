@@ -1,6 +1,7 @@
 import constants
 import pandas
 from getsaveddata import get_log_dates
+from menufunctions import quit_function
 
 class NewExercise:
     def __init__(self, exercise_name, measurement):
@@ -24,16 +25,18 @@ class NewExercise:
 
     def save_to_longest_streak(self):
         string = "\n" + self.exercise_name + ",0"
-        with open("longest_streak.csv", "a") as file:
+        with open(constants.LONGEST_STREAK_FILE, "a") as file:
             file.write(string)
 
     def get_new_exercise_from_user(self):
         exercise_name = ""
         exercise_measurement = ""
         while True:
-            exercise_name = input("Enter the name of the new exercise to be tracked: ")
+            exercise_name = input("Enter the name of the new exercise to be tracked, or 'c' to cancel: ")
             if exercise_name.lower() == "q":
-                return
+                quit_function()
+            elif exercise_name.lower() == "c":
+                break
             elif not exercise_name.isalnum() or len(exercise_name) > 50:
                 print("Error: Exercise names must be alphanumeric and less than 50 characters.")
             elif exercise_name.lower() in constants.EXERCISE_LIST:
@@ -44,7 +47,7 @@ class NewExercise:
         while True:
             exercise_measurement = input("Enter the measurement for this exercise (reps or minutes): ")
             if exercise_measurement.lower() == "q":
-                return
+                quit_function()
             elif not exercise_measurement.lower() in ["reps", "minutes"]:
                 print("Error: Please enter either 'reps' or 'minutes'.")
             else:
