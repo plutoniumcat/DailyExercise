@@ -73,8 +73,7 @@ class CurrentStreak:
         if self.rule == 8:
             return self.evaluate_history(exercise_history)
         # Set two cursors, one to the start of current week and one to most recent day in log
-        most_recent_date = datetime.strptime(last_log_date, "%Y-%m-%d")
-        day_of_week = most_recent_date.weekday()
+        day_of_week = last_log_date.weekday()
         cursor1 = day_of_week
         cursor2 = 0
         # Check that there is at least one week of history

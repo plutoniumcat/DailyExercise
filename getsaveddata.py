@@ -13,7 +13,12 @@ def get_last_log_date():
     if len(log_dates) == 0:
         return 0
     last_log_date = log_dates[-1]
-    return last_log_date
+    try:
+        datetime_date = datetime.strptime(last_log_date, "%Y-%m-%d")
+    except ValueError:
+        print("Error: Log file returned invalid date. If problem persists, delete log.csv "
+        "and restart DailyExercise.")
+    return datetime_date
 
 def determine_log_age(log_date):
     date = datetime.strptime(log_date, "%Y-%m-%d")

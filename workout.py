@@ -29,20 +29,17 @@ class Workout:
                 elif user_input.lower() == "f":
                     break
                 else:
-                    try:
-                        # Separate number from exercise name
-                        number = user_input.split()[-1]
-                        # Remove number and extra space from end of exercise name
-                        exercise_name = user_input[:-(len(number) + 1)]
-                        if exercise_name not in constants.EXERCISE_LIST:
-                            print("Error: Exercise type not recognized.")
-                        elif not number.isnumeric():
-                            print("Error: Exercise reps or duration must be numeric.")
-                        else:
-                            self.workout_dict[exercise_name] = number
-                    except Exception as e:
-                        # TODO create specific exception handling
-                        print(e)
+                    # Separate number from exercise name
+                    number = user_input.split()[-1]
+                    # Remove number and extra space from end of exercise name
+                    exercise_name = user_input[:-(len(number) + 1)]
+                    if exercise_name not in constants.EXERCISE_LIST:
+                        print("Error: Enter a valid exercise type and number.")
+                    elif not number.isnumeric():
+                        print("Error: Exercise reps or duration must be numeric.")
+                    else:
+                        self.workout_dict[exercise_name] = number
+
         else:
             print("Error: You have already logged a workout for today.")
             # "To edit previous workouts, use the History menu.")
