@@ -45,16 +45,19 @@ def test_current_walking_streak():
 # Test with 1 min per day every day for 70 days
 def test_aerobics_total():
     aerobics_total = History("test_log.csv", "aerobics", [])
+    aerobics_total.set_history()
     assert aerobics_total.retrieve_total_reps() == 70
 
 
 # Test with 1 min per day 5 times a week for 10 weeks
 def test_dancing_total():
     dancing_total = History("test_log.csv", "dancing", [])
+    dancing_total.set_history()
     assert dancing_total.retrieve_total_reps() == 50
 
 
 # Test history with no exercise (0 mins)
 def test_walking_total():
     walking_total = History("test_log.csv", "walking", [])
+    walking_total.set_history()
     assert walking_total.retrieve_total_reps() == 0
