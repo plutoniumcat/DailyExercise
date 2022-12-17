@@ -20,6 +20,7 @@ def main():
             print("Thank you for using DailyExercise.")
             exit()
 
+
 def initialize_log():
     # Create log and input column headers if log does not already exist
     if not os.path.isfile(constants.DEFAULT_CSV):
@@ -45,6 +46,7 @@ def initialize_log():
                 blank_workout = Workout(workout_date, {"aerobics":0}, True)
                 blank_workout.write_workout_to_csv()
 
+
 def display_main_menu():
             clear_screen()
             print("Main Menu\n1. Log today's workout\n2. Add new exercise type\n3. Streaks"
@@ -59,6 +61,7 @@ def display_main_menu():
             elif main_menu_selection == 4:
                 history_menu()
 
+
 def todays_workout():
     clear_screen()
     todays_workout = Workout(constants.DEFAULT_CSV, str(date.today()), {}, False)
@@ -66,12 +69,14 @@ def todays_workout():
     press_enter_to_continue()
     display_main_menu()
 
+
 def add_new_exercise():
     clear_screen()
     new_exercise = NewExercise("", "")
     new_exercise.get()
     press_enter_to_continue()
     display_main_menu()
+
 
 def streaks_menu():
     clear_screen()
@@ -92,11 +97,13 @@ def streaks_menu():
     press_enter_to_continue()
     display_main_menu()
 
+
 def history_menu():
     clear_screen()
-    history = History("", [])
+    history = History(constants.DEFAULT_CSV, "", [])
     history.view_history()
     press_enter_to_continue()
     display_main_menu()
+
 
 main()

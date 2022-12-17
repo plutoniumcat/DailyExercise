@@ -2,6 +2,7 @@ import csv
 import constants
 from menufunctions import get_menu_selection, clear_screen, input_exercise_type
 
+
 class StreakConditions:
     def __init__(self, exercise, rule, overwrite):
         self.exercise = exercise
@@ -62,7 +63,7 @@ class StreakConditions:
         print(self.exercise + ", " + rule_list[self.rule])
         user_input = input("Confirm new streak conditions? Y/N ")
         if user_input.lower() == "y":
-            if self.overwrite == False:
+            if self.overwrite is False:
                 with open("streakconditions.csv", "a") as file:
                     file.write(streak_conditions)
             else:

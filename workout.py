@@ -5,6 +5,7 @@ from getsaveddata import get_last_log_date
 from menufunctions import quit_function
 from currentstreaks import CurrentStreaksAlert
 
+
 class Workout:
     def __init__(self, log, date, workout_dict, confirmation):
         self.log = log

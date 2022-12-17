@@ -5,6 +5,7 @@ import constants
 from getsaveddata import last_log_date_datetime, get_longest_streak_dict
 from menufunctions import input_exercise_type
 
+
 class CurrentStreaksAlert:
     def __init__(self, exercise_list) -> None:
         self.exercise_list = exercise_list
@@ -20,6 +21,7 @@ class CurrentStreaksAlert:
         else:
             for item in streaks_list:
                 print(item)
+
 
 class CurrentStreak:
     def __init__(self, log, conditions, exercise, rule) -> None:
@@ -126,8 +128,6 @@ class CurrentStreak:
     def current_streak(self):
         self.set_streak_rule()
         current_streak = self.find_current_streak_length()
-        print(self.exercise)
-        print(current_streak)
         self.update_longest_streak(current_streak)
         if current_streak:
             return "Your current streak for " + self.exercise + " is " + str(current_streak) + " days."

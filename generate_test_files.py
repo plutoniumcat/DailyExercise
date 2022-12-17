@@ -3,19 +3,13 @@ import csv
 from datetime import date, datetime, timedelta
 import constants
 
-# def generate_week(daysweek):
-#     week = []
-#     for i in range(daysweek + 1):
-#         week.append(10)
-#     for i in range(7 - daysweek - 1):
-#         week.append(0)
-#     return week
 
 def generate_history(daysweek, weeks):
     history = []
     for i in range(weeks):
         history += daysweek
     return history
+
 
 def generate_alternate_history():
     history = []
@@ -24,11 +18,13 @@ def generate_alternate_history():
         history.append(0)
     return history
 
+
 def generate_empty_history():
     history = []
     for i in range(70):
         history.append(0)
     return history
+
 
 def create_test_log():
     print("Creating test log...")
@@ -75,17 +71,6 @@ def create_test_log():
             dataframe[constants.EXERCISE_LIST[i]] = empty_history
     dataframe.to_csv("test_log.csv", index=False)
 
-def create_test_longeststreak():
-    print("Creating streak record...")
-    streakdict = {}
-    x = 0
-    for exercise in constants.EXERCISE_LIST:
-        x += 10
-        streakdict[exercise] = x
-    with open("test_longeststreak.csv", "w+") as outfile:
-        writer = csv.writer(outfile)
-        for row in streakdict.items():
-            writer.writerow(row)
 
 def create_test_streakconditions():
     print("Creating streak conditions...")
@@ -100,10 +85,11 @@ def create_test_streakconditions():
         for row in conditions.items():
             writer.writerow(row)
 
+
 def generate_test_files():
     create_test_log()
-    # create_test_longeststreak()
     create_test_streakconditions()
     print("Test files created")
+
 
 generate_test_files()

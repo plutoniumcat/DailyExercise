@@ -3,8 +3,10 @@ import constants
 from getsaveddata import get_longest_streak_dict
 from menufunctions import input_exercise_type
 
+
 class History:
-    def __init__(self, exercise, history) -> None:
+    def __init__(self, log, exercise, history) -> None:
+        self.log = log
         self.exercise = exercise
         self.history = history
 
@@ -21,7 +23,7 @@ class History:
                     return
 
     def set_history(self):
-        log = pandas.read_csv(constants.DEFAULT_CSV)
+        log = pandas.read_csv(self.log)
         self.history = log[self.exercise].tolist()
         return
 
