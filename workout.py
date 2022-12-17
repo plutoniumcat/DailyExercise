@@ -44,8 +44,8 @@ class Workout:
                         # TODO create specific exception handling
                         print(e)
         else:
-            print("Error: You have already logged a workout for today. "
-            "To edit previous workouts, use the History menu.")
+            print("Error: You have already logged a workout for today.")
+            # "To edit previous workouts, use the History menu.")
             return
 
     def show_workout(self):

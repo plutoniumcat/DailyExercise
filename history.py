@@ -11,22 +11,19 @@ class History:
     def set_exercise(self):
         while True:
             user_input = input_exercise_type()
-            if user_input.lower == "c":
+            if user_input.lower() == "c":
                 break
             else:
-                try:
-                    if user_input not in constants.EXERCISE_LIST:
-                        print("Error: Exercise type not recognized.")
-                    else:
-                        self.exercise = user_input
-                        break
-                except Exception as e:
-                    # TODO create specific exception handling
-                    print(e)
+                if user_input not in constants.EXERCISE_LIST:
+                    print("Error: Exercise type not recognized.")
+                else:
+                    self.exercise = user_input
+                    return
 
     def set_history(self):
         log = pandas.read_csv(constants.DEFAULT_CSV)
         self.history = log[self.exercise].tolist()
+        return
 
     def retrieve_measurement(self):
         return constants.EXERCISE_DICT[self.exercise]

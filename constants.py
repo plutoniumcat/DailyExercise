@@ -3,7 +3,7 @@ from datetime import datetime
 import pandas
 
 MAIN_MENU_ITEMS = 4
-STREAK_MENU_ITEMS = 3
+STREAK_MENU_ITEMS = 4
 
 DEFAULT_CSV = "log.csv"
 LONGEST_STREAK_FILE = "longest_streak.csv"

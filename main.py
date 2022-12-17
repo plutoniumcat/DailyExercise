@@ -75,7 +75,8 @@ def add_new_exercise():
 
 def streaks_menu():
     clear_screen()
-    print("Streaks\n1. View all current streaks\n2. Search for current streak\n3. Define streak conditions")
+    print("Streaks\n1. View all current streaks\n2. Search for current streak\n3. Define streak conditions"
+    "\n4. Return to main menu")
     streak_menu_selection = get_menu_selection(constants.STREAK_MENU_ITEMS)
     if streak_menu_selection == 1:
         view_streak = CurrentStreaksAlert(constants.EXERCISE_LIST)
@@ -86,6 +87,8 @@ def streaks_menu():
     elif streak_menu_selection == 3:
         new_streak_condition = StreakConditions("", "", False)
         new_streak_condition.define_streak_conditions()
+    elif streak_menu_selection == 4:
+        pass
     press_enter_to_continue()
     display_main_menu()
 
