@@ -68,7 +68,7 @@ Then navigate into the folder containing DailyExercise and run setup.sh. This wi
 Once setup has been completed, you will be able to run DailyExercise by running dailyexercise.sh
 
 ## Testing
-Testing can be done with pytest, which will find and execute run_test.py. This file contains a function to automatically generate a current test log with predetermined histories for various exercises, as well as test versions of the currentstreaks and longeststreaks files. It also contains a function to temporarily overwrite the variables containing the paths to these files with the paths to the test files. (If the tests are run with an empty test log, or with the user's actual data, they will fail.)
+Testing can be done with pytest, which will find and execute run_test.py. Before testing, it is necessary to run generate_test_files.py to generate mock data for testing. The tests will fail if performed on blank log files or real user data.
 
 The tests test the following things:
 TEST 1- A test of the "Streaks" feature, which tests that the find_current_streak_length function returns the correct number of days in the following scenarios:

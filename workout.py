@@ -6,7 +6,8 @@ from menufunctions import quit_function
 from currentstreaks import CurrentStreaksAlert
 
 class Workout:
-    def __init__(self, date, workout_dict, confirmation):
+    def __init__(self, log, date, workout_dict, confirmation):
+        self.log = log
         self.workout_dict = workout_dict
         self.date = date
         self.confirmation = confirmation
@@ -80,7 +81,7 @@ class Workout:
             # Copy today's workout into comprehensive dictionary
             for key in self.workout_dict:
                 write_to_csv_dict[key] = self.workout_dict[key]
-            with open(constants.DEFAULT_CSV, "a") as log:
+            with open(self.log, "a") as log:
                 writer = csv.writer(log)
                 writer.writerow(write_to_csv_dict.values())
 

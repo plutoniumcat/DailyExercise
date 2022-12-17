@@ -1,14 +1,5 @@
-from constants import DEFAULT_CSV, LONGEST_STREAK_FILE, STREAK_CONDITIONS_FILE
-from generate_test_files import generate_test_files
 from currentstreaks import CurrentStreak
 from history import History
-
-# Change log files to test files for the duration of the tests
-
-def change_to_test_files():
-    DEFAULT_CSV = "test_log.csv"
-    LONGEST_STREAK_FILE = "test_longeststreak.csv"
-    STREAK_CONDITIONS_FILE = "test_streakconditions.csv"
 
 # TEST #1 
 # Feature: Streaks
@@ -17,47 +8,49 @@ def change_to_test_files():
 
 # 12 week streak with "every day" condition
 def test_current_aerobics_streak():
-    aerobics_streak = CurrentStreak("aerobics", 0)
-    assert aerobics_streak.find_current_streak_length() == 84
+    aerobics_streak = CurrentStreak("test_log.csv",{"aerobics":0},"aerobics",0)
+    assert aerobics_streak.find_current_streak_length() == 70
 
 # 10 week streak with "6 times a week" condition
 def test_current_cycling_streak():
-    cycling_streak = CurrentStreak("cycling", 1)
+    cycling_streak = CurrentStreak("test_log.csv",{"cycling":1},"cycling",0)
     assert cycling_streak.find_current_streak_length() == 70
 
 # 8 week streak with "5 times a week" condition
 def test_current_dancing_streak():
-    dancing_streak = CurrentStreak("dancing", 2)
-    assert dancing_streak.find_current_streak_length() == 56
+    DEFAULT_CSV = "test_log.csv"
+    STREAK_CONDITIONS_FILE = "test_streakconditions.csv"
+    dancing_streak = CurrentStreak("test_log.csv",{"dancing":2},"dancing",0)
+    assert dancing_streak.find_current_streak_length() == 70
 
 # 6 week streak with "4 times a week" condition
 def test_current_plank_streak():
-    plank_streak = CurrentStreak("plank", 3)
-    assert plank_streak.find_current_streak_length() == 42
+    plank_streak = CurrentStreak("test_log.csv",{"plank":3},"plank",0)
+    assert plank_streak.find_current_streak_length() == 70
 
 # 5 week streak with "3 times a week" condition
 def test_current_pushup_streak():
-    pushup_streak = CurrentStreak("push up", 4)
-    assert pushup_streak.find_current_streak_length() == 35
+    pushup_streak = CurrentStreak("test_log.csv",{"push up":4},"push up", 4)
+    assert pushup_streak.find_current_streak_length() == 70
 
 # 4 week streak with "2 times a week" condition
 def test_current_running_streak():
-    running_streak = CurrentStreak("running", 5)
-    assert running_streak.find_current_streak_length() == 28
+    running_streak = CurrentStreak("test_log.csv",{"running":5},"running", 5)
+    assert running_streak.find_current_streak_length() == 70
 
 # 3 week streak with "once a week" condition
 def test_current_stretching_streak():
-    stretching_streak = CurrentStreak("stretching", 6)
-    assert stretching_streak.find_current_streak_length() == 21
+    stretching_streak = CurrentStreak("test_log.csv",{"stretching":6},"stretching", 6)
+    assert stretching_streak.find_current_streak_length() == 70
 
 # 50 day streak with "every second day" condition
 def test_current_swimming_streak():
-    swimming_streak = CurrentStreak("swimming", 8)
+    swimming_streak = CurrentStreak("test_log.csv",{"swimming":8},"swimming", 8)
     assert swimming_streak.find_current_streak_length() == 50
 
 # Test for "every day" streak when no streak exists"
 def test_current_walking_streak():
-    walking_streak = CurrentStreak("walking", 0)
+    walking_streak = CurrentStreak("test_log.csv",{"walking":0},"walking", 0)
     assert walking_streak.find_current_streak_length() == 0
 
 # TEST #2 
@@ -80,6 +73,3 @@ def test_dancing_total():
 def test_walking_total():
     walking_total = History("walking", [])
     assert walking_total.retrieve_total_reps() == 0
-
-# generate_test_files()
-change_to_test_files()

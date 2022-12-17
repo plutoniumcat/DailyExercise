@@ -29,7 +29,7 @@ def initialize_log():
             writer.writerow(header_list)
     else:
         # Check if last workout was earlier than yesterday
-        last_log_date = get_last_log_date()
+        last_log_date = str(get_last_log_date())
         today = date.today()
         yesterday = str(datetime.today() - timedelta(days=1))
         if last_log_date in [today, yesterday, 0]:
@@ -61,7 +61,7 @@ def display_main_menu():
 
 def todays_workout():
     clear_screen()
-    todays_workout = Workout(str(date.today()), {}, False)
+    todays_workout = Workout(constants.DEFAULT_CSV, str(date.today()), {}, False)
     todays_workout.get()
     press_enter_to_continue()
     display_main_menu()
@@ -82,7 +82,7 @@ def streaks_menu():
         view_streak = CurrentStreaksAlert(constants.EXERCISE_LIST)
         view_streak.current_streaks_alert()
     elif streak_menu_selection == 2:
-        view_streak = CurrentStreak("", "")
+        view_streak = CurrentStreak(constants.DEFAULT_CSV, constants.STREAK_CONDITIONS, "", "")
         view_streak.check_for_streak()
     elif streak_menu_selection == 3:
         new_streak_condition = StreakConditions("", "", False)
