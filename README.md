@@ -26,7 +26,7 @@ A user can also view their current streaks by selecting "Streaks" from the main 
 By accessing "History" from the main menu, users can search for a particular exercise to receive information about it. This includes the total number of days on which the exercise was performed, and the total number of reps, or if the exercise is measured in time, the total number of hours and minutes spent. It also includes the increase in reps or duration, comparing the first workout to the largest one recorded. Finally, it includes the length of the longest streak on record.
 
 ## Implementation plan
-To create this app, I used Trello as a project management tracker. I created cards with user stories for each feature I wanted to include and moved them from "To Do" to "Doing" and "Done" as I made progress on them. Here is the approximate order in which I implemented each feature.
+To create this app, I used Trello as a project management tracker (https://trello.com/b/9OnQOFW1/exercise-tracker). I created cards with user stories for each feature I wanted to include and moved them from "To Do" to "Doing" and "Done" as I made progress on them. Here is the approximate order in which I implemented each feature.
 
 1. Main menu and the ability to choose options with numeric input. (Deadline: Dec 8)
 2. Close program when the user types 'q' for quit. (Deadline: Dec 8)
