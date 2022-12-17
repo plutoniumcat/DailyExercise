@@ -28,33 +28,61 @@ By accessing "History" from the main menu, users can search for a particular exe
 ## Implementation plan
 To create this app, I used Trello as a project management tracker. I created cards with user stories for each feature I wanted to include and moved them from "To Do" to "Doing" and "Done" as I made progress on them. Here is the approximate order in which I implemented each feature.
 
-1. Main menu and the ability to choose options with numeric input.
-2. Close program when the user types 'q' for quit.
-### Add workouts
-3. Get workout information from user input.
-4. Save workout information to .csv file.
-5. Ask the user to confirm the workout before saving.
-6. View and edit workout before saving.
-7. Check for date of most recent workout (to prevent the user from logging two workouts with the same date).
+1. Main menu and the ability to choose options with numeric input. (Deadline: Dec 8)
+2. Close program when the user types 'q' for quit. (Deadline: Dec 8)
+### Add workouts 
+3. Get workout information from user input. (Deadline: Dec 10)
+4. Save workout information to .csv file. (Deadline: Dec 10)
+5. Ask the user to confirm the workout before saving. (Deadline: Dec 11)
+6. View and edit workout before saving. (Deadline: Dec 11)
+7. Check for date of most recent workout (to prevent the user from logging two workouts with the same date). (Deadline: Dec 11)
 ### Add exercise type
-8. Get new exercise name from user input.
-9. Classify exercises by measurement type (reps or duration).
-10. Confirm that exercise name and measurement are correct.
-11. Save exercises to exercise list.
-12. Update log to contain a column for the new exercise, and fill it with 0 for all previous dates.
-13. Update longest streak file to set the longest streak for the new exercise to 0.
+8. Get new exercise name from user input. (Deadline: Dec 12)
+9. Classify exercises by measurement type (reps or duration). (Deadline: Dec 12)
+10. Confirm that exercise name and measurement are correct. (Deadline: Dec 12)
+11. Save exercises to exercise list. (Deadline: Dec 12)
+12. Update log to contain a column for the new exercise, and fill it with 0 for all previous dates. (Deadline: Dec 14)
+13. Update longest streak file to set the longest streak for the new exercise to 0. (Deadline: Dec 14)
 ### Streaks
-14. Get user-defined streak conditions.
-15. Determine current streaks.
-16. Return all current streaks to user.
-17. Notify user of current streaks when they log a workout.
-18. Allow user to search their current streaks by exercise name.
+14. Get user-defined streak conditions. (Deadline: Dec 12)
+15. Determine current streaks. (Deadline: Dec 13)
+16. Return all current streaks to user. (Deadline: Dec 13)
+17. Notify user of current streaks when they log a workout. (Deadline: Dec 13)
+18. Allow user to search their current streaks by exercise name. (Deadline: Dec 13)
 ### History
-19. Retrieve log history for a specific exercise.
-20. Calculate total days on which the exercise was performed.
-21. Calculate the total number of reps, or the total number of hours and minutes for an exercise.
-22. Find the increase in reps or time between when the user first did the exercise, and their best workout.
-23. Retrieve longest streak information.
-24. Generate report displaying all of the above in a user-friendly manner.
+19. Retrieve log history for a specific exercise. (Deadline: Dec 14)
+20. Calculate total days on which the exercise was performed. (Deadline: Dec 14)
+21. Calculate the total number of reps, or the total number of hours and minutes for an exercise. (Deadline: Dec 14)
+22. Find the increase in reps or time between when the user first did the exercise, and their best workout. (Deadline: Dec 14)
+23. Retrieve longest streak information. (Deadline: Dec 14)
+24. Generate report displaying all of the above in a user-friendly manner. (Deadline: Dec 14)
 
 ## Help Documentation
+### Setup
+DailyExercise requires Python 3 to run.
+
+To run DailyExercise, first clone the repository with ```git clone https://github.com/radiantbutterfly/DailyExercise```.
+
+Then navigate into the folder containing DailyExercise and run setup.sh. This will create a virtual environment to run the program in and install the required packages.
+### Running DailyExercise
+Once setup has been completed, you will be able to run DailyExercise by running dailyexercise.sh
+
+## Testing
+Testing can be done with pytest, which will find and execute run_test.py. This file contains a function to automatically generate a current test log with predetermined histories for various exercises, as well as test versions of the currentstreaks and longeststreaks files. It also contains a function to temporarily overwrite the variables containing the paths to these files with the paths to the test files. (If the tests are run with an empty test log, or with the user's actual data, they will fail.)
+
+The tests test the following things:
+TEST 1- A test of the "Streaks" feature, which tests that the find_current_streak_length function returns the correct number of days in the following scenarios:
+1. A 12 week streak with the "every day" condition (84 days).
+2. A 10 week streak with the "six times a week" condition (70 days).
+3. An 8 week streak with the "five times a week" condition (56 days).
+4. A 6 week streak with the "four times a week" condition (42 days).
+5. A 5 week streak with the "three times a week" condition (35 days).
+6. A 4 week streak with the "two times a week" condition (28 days).
+7. A 3 week streak with the "once a week" condition (21 days).
+8. A 50 day streak with the "every second day" condition (50 days).
+9. An exercise for which there are no recorded workouts (0 days).
+
+TEST 2- A test of the "History" feature, which tests that the find_total_reps function returns the correct number of reps or minutes in the following scenarios:
+1. 12 weeks of every day exercise starting at 10 mins a day and increasing the workout time by 5 mins each week (total 3640 mins)
+2. 8 weeks of exercise five times a week, starting at 10 mins a day and increasing the workout time by 5 mins each week (total 1100 mins).
+3. An exercise for which there are no recorded workouts (total 0 mins).
