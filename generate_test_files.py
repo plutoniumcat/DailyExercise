@@ -103,10 +103,8 @@ def create_test_streakconditions():
         for row in conditions.items():
             writer.writerow(row)
 
-def create_test_files():
+def generate_test_files():
     create_test_log()
     create_test_longeststreak()
     create_test_streakconditions()
     print("Test files created")
-
-create_test_files()

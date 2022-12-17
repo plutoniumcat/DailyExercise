@@ -1,7 +1,7 @@
 import csv
 from datetime import datetime
 import pandas
-from constants import DEFAULT_CSV
+from constants import DEFAULT_CSV, LONGEST_STREAK_FILE
 
 def get_log_dates():
     log = pandas.read_csv(DEFAULT_CSV)
@@ -21,6 +21,6 @@ def determine_log_age(log_date):
     return abs((date - today).days)
 
 def get_longest_streak_dict():
-    dataframe = pandas.read_csv("longest_streak.csv", header=None, index_col=0).squeeze("columns")
+    dataframe = pandas.read_csv(LONGEST_STREAK_FILE, header=None, index_col=0).squeeze("columns")
     streak_dict = dataframe.to_dict()
     return streak_dict
