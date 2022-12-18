@@ -87,7 +87,9 @@ class History:
         self.set_exercise()
         if self.exercise == "":
                 return
-        log = pandas.read_csv("test_log.csv")
+        print("Generating spreadsheet...")
+        log = pandas.read_csv(constants.DEFAULT_CSV)
         spreadsheet = log[["DATE", self.exercise]].copy()
         csv_name = self.exercise + date.today().strftime("%d-%m-%Y") + ".csv"
         spreadsheet.to_csv(csv_name)
+        print("Spreadsheet created: " + csv_name)

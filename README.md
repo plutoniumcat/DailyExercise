@@ -55,6 +55,7 @@ To create this app, I used Trello as a project management tracker (https://trell
 22. Find the increase in reps or time between when the user first did the exercise, and their best workout. (Deadline: Dec 14)
 23. Retrieve longest streak information. (Deadline: Dec 14)
 24. Generate report displaying all of the above in a user-friendly manner. (Deadline: Dec 14)
+25. Generate spreadsheet with full history of an exercise and dates. (Deadline Dec 18)
 
 ## Help Documentation
 ### Setup

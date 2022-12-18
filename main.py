@@ -86,7 +86,7 @@ def streaks_menu():
         view_streak = CurrentStreaksAlert(constants.EXERCISE_LIST)
         view_streak.current_streaks_alert()
     elif streak_menu_selection == 2:
-        view_streak = CurrentStreak(constants.DEFAULT_CSV, constants.STREAK_CONDITIONS, "", "")
+        view_streak = CurrentStreak(constants.DEFAULT_CSV, constants.STREAK_CONDITIONS, "", 0)
         view_streak.check_for_streak()
     elif streak_menu_selection == 3:
         new_streak_condition = StreakConditions("", "", False)

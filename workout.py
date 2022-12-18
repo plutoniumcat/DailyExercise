@@ -41,10 +41,8 @@ class Workout:
                         print("Error: Exercise reps or duration must be numeric.")
                     else:
                         self.workout_dict[exercise_name] = number
-
         else:
             print("Error: You have already logged a workout for today.")
-            # "To edit previous workouts, use the History menu.")
             return
 
     def show_workout(self):
@@ -62,8 +60,10 @@ class Workout:
         else:
             while True:
                 self.show_workout()
-                user_input = input("Log this workout? 'Y' for 'yes', 'e' for 'edit' or 'q' for quit. ")
+                user_input = input("Log this workout? 'Y' for 'yes', 'e' for 'edit' or 'c' for cancel. ")
                 if user_input.lower() == "q":
+                    quit_function()
+                elif user_input.lower() == "c":
                     return
                 elif user_input.lower() == "y":
                     self.confirmation = True

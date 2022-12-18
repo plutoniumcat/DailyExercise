@@ -36,7 +36,7 @@ class NewExercise:
             if exercise_name.lower() == "q":
                 quit_function()
             elif exercise_name.lower() == "c":
-                break
+                return
             elif not exercise_name.isalnum() or len(exercise_name) > 50:
                 print("Error: Exercise names must be alphanumeric and less than 50 characters.")
             elif exercise_name.lower() in constants.EXERCISE_LIST:
