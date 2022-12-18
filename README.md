@@ -64,7 +64,7 @@ To run DailyExercise, first clone the repository with ```git clone https://githu
 
 Then navigate into the folder containing DailyExercise and run setup.sh. This will create a virtual environment to run the program in and install the required packages.
 ### Running DailyExercise
-Once setup has been completed, you will be able to run DailyExercise by running dailyexercise.sh
+Once setup has been completed, you will be able to run DailyExercise with ./dailyexercise.sh
 
 ### Requirements
 Python 3
@@ -81,21 +81,19 @@ pytz 2022.6
 six 1.16.0
 tomli 2.0.1
 ## Testing
-Testing can be done with pytest, which will find and execute run_test.py. Before testing, it is necessary to run generate_test_files.py to generate mock data for testing. The tests will fail if performed on blank log files or real user data.
+Testing can be done with pytest, which will find and execute run_test.py. Before testing, it is necessary to run generate_test_files.py to generate mock data for testing. The tests will fail if performed on blank log files or real user data. Run ./test_setup.sh to generate the test files. Or, to prepare for tests manually, run python3 generate_test_files.py, rename the existing streakconditions.csv file to backup_streakconditions.csv, and rename test_streakconditions.csv to streakconditions.csv.
+
+To return the app to normal operation after the test, run ./test_cleanup.sh. Or manually delete test_log.csv and streakconditions.csv and rename backup_streakconditions.csv to streakconditions.csv.
 
 The tests test the following things:
 TEST 1- A test of the "Streaks" feature, which tests that the find_current_streak_length function returns the correct number of days in the following scenarios:
-1. A 12 week streak with the "every day" condition (84 days).
-2. A 10 week streak with the "six times a week" condition (70 days).
-3. An 8 week streak with the "five times a week" condition (56 days).
-4. A 6 week streak with the "four times a week" condition (42 days).
-5. A 5 week streak with the "three times a week" condition (35 days).
-6. A 4 week streak with the "two times a week" condition (28 days).
-7. A 3 week streak with the "once a week" condition (21 days).
-8. A 50 day streak with the "every second day" condition (50 days).
-9. An exercise for which there are no recorded workouts (0 days).
+1. 70 day streak with "every day" condition.
+2. 70 day streak with "3 times a week" condition.
+3. 70 day streak with "once a week" condition.
+4. 70 day streak with "every second day" condition.
+5. Test for "every day" streak when no streak exists (returns 0 days).
 
 TEST 2- A test of the "History" feature, which tests that the find_total_reps function returns the correct number of reps or minutes in the following scenarios:
-1. 12 weeks of every day exercise starting at 10 mins a day and increasing the workout time by 5 mins each week (total 3640 mins)
-2. 8 weeks of exercise five times a week, starting at 10 mins a day and increasing the workout time by 5 mins each week (total 1100 mins).
-3. An exercise for which there are no recorded workouts (total 0 mins).
+1. 1 min per day every day for 70 days (returns 70 mins).
+2. 1 min per day 5 times a week for 10 weeks (returns 50 mins).
+3. An exercise for which there are no recorded workouts (returns 0 mins).

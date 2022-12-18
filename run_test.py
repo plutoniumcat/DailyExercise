@@ -31,7 +31,7 @@ def test_current_swimming_streak():
     assert swimming_streak.find_current_streak_length() == 70
 
 
-# Test for "every day" streak when no streak exists"
+# Test for "every day" streak when no streak exists
 def test_current_walking_streak():
     walking_streak = CurrentStreak("test_log.csv",{"walking":0},"walking", 0)
     assert walking_streak.find_current_streak_length() == 0
