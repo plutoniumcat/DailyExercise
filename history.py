@@ -60,9 +60,6 @@ class History:
                 highest = day
         return [initial, highest]
 
-    def retrieve_graph(self):
-        pass
-
     def view_history(self):
         self.set_exercise()
         if self.exercise == "":
@@ -70,6 +67,7 @@ class History:
         self.set_history()
         exercise = self.exercise
         measurement = self.retrieve_measurement()
+        # Make exercise names plural
         if measurement == "reps":
             exercise = exercise + "s"
         total_reps = self.retrieve_total_reps()
