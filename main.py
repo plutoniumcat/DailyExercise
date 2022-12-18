@@ -37,7 +37,11 @@ def initialize_log():
             return
         else:
             # Determine how many days ago the last log was
-            log_age = determine_log_age(last_log_date)
+            try:
+                log_age = determine_log_age(last_log_date)
+            # Catch error when last log date is 0
+            except ValueError:
+                return
             # Save a row of zeros for every missed day
             for i in reversed(range(1, log_age - 1)):
                 # Find the date
@@ -67,7 +71,7 @@ def todays_workout():
     todays_workout = Workout(constants.DEFAULT_CSV, str(date.today()), {}, False)
     todays_workout.get()
     press_enter_to_continue()
-    display_main_menu()
+    return
 
 
 def add_new_exercise():
@@ -75,7 +79,7 @@ def add_new_exercise():
     new_exercise = NewExercise("", "")
     new_exercise.get()
     press_enter_to_continue()
-    display_main_menu()
+    return
 
 
 def streaks_menu():
@@ -92,18 +96,26 @@ def streaks_menu():
     elif streak_menu_selection == 3:
         new_streak_condition = StreakConditions("", "", False)
         new_streak_condition.define_streak_conditions()
-    elif streak_menu_selection == 4:
+    else:
         pass
     press_enter_to_continue()
-    display_main_menu()
+    return
 
 
 def history_menu():
     clear_screen()
-    history = History(constants.DEFAULT_CSV, "", [])
-    history.view_history()
+    print("History\n1. Exercise summary\n2. Generate spreadsheet for exercise\n3. Return to main menu")
+    history_menu_selection = get_menu_selection(constants.HISTORY_MENU_ITEMS)
+    if history_menu_selection == 1:
+        history = History(constants.DEFAULT_CSV, "", [])
+        history.view_history()
+    elif history_menu_selection == 2:
+        history = History(constants.DEFAULT_CSV, "", [])
+        history.generate_spreadsheet()
+    else:
+        pass
     press_enter_to_continue()
-    display_main_menu()
+    return
 
 
 main()

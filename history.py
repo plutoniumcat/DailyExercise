@@ -1,4 +1,5 @@
 import pandas
+from datetime import date
 import constants
 from getsaveddata import get_longest_streak_dict
 from menufunctions import input_exercise_type
@@ -81,3 +82,12 @@ class History:
         " over " + str(total_days) + " days. " "You have increased by " + str(increase[1] - increase[0]) 
         + " " + measurement + ", from " + str(increase[0]) + " " + measurement + " to "
         + str(increase[1]) + " " + measurement + ". Your longest streak is " + str(streak) + " days.")
+
+    def generate_spreadsheet(self):
+        self.set_exercise()
+        if self.exercise == "":
+                return
+        log = pandas.read_csv("test_log.csv")
+        spreadsheet = log[["DATE", self.exercise]].copy()
+        csv_name = self.exercise + date.today().strftime("%d-%m-%Y") + ".csv"
+        spreadsheet.to_csv(csv_name)

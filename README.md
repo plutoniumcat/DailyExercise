@@ -68,17 +68,29 @@ Once setup has been completed, you will be able to run DailyExercise with ./dail
 
 ### Requirements
 Python 3
+
 attrs 22.1.0
+
 exceptiongroup 1.0.4
+
 iniconfig 1.1.1
+
 numpy 1.23.5
+
 packaging 22.0
+
 pandas 1.5.2
+
 pluggy 1.0.0
+
 pytest 7.2.0
+
 python-dateutil 2.8.2
+
 pytz 2022.6
+
 six 1.16.0
+
 tomli 2.0.1
 ## Testing
 Testing can be done with pytest, which will find and execute run_test.py. Before testing, it is necessary to run generate_test_files.py to generate mock data for testing. The tests will fail if performed on blank log files or real user data. Run ./test_setup.sh to generate the test files. Or, to prepare for tests manually, run python3 generate_test_files.py, rename the existing streakconditions.csv file to backup_streakconditions.csv, and rename test_streakconditions.csv to streakconditions.csv.
@@ -86,6 +98,7 @@ Testing can be done with pytest, which will find and execute run_test.py. Before
 To return the app to normal operation after the test, run ./test_cleanup.sh. Or manually delete test_log.csv and streakconditions.csv and rename backup_streakconditions.csv to streakconditions.csv.
 
 The tests test the following things:
+
 TEST 1- A test of the "Streaks" feature, which tests that the find_current_streak_length function returns the correct number of days in the following scenarios:
 1. 70 day streak with "every day" condition.
 2. 70 day streak with "3 times a week" condition.
