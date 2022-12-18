@@ -33,15 +33,10 @@ def initialize_log():
         last_log_date = str(get_last_log_date())
         today = date.today()
         yesterday = str(datetime.today() - timedelta(days=1))
-        if last_log_date in [today, yesterday, 0]:
+        if last_log_date in [today, yesterday, "0"]:
             return
         else:
-            # Determine how many days ago the last log was
-            try:
-                log_age = determine_log_age(last_log_date)
-            # Catch error when last log date is 0
-            except ValueError:
-                return
+            log_age = determine_log_age(last_log_date)
             # Save a row of zeros for every missed day
             for i in reversed(range(1, log_age - 1)):
                 # Find the date
