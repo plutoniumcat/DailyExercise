@@ -12,7 +12,7 @@ class StreakConditions:
     def set_exercise(self):
         clear_screen()
         while True:
-            exercise_name = exercise_name = input_exercise_type()
+            exercise_name = input_exercise_type()
             if exercise_name.lower() == 'c':
                 break
             elif exercise_name not in constants.EXERCISE_LIST:
@@ -26,12 +26,15 @@ class StreakConditions:
                     self.overwrite = True
                     return
                 else:
+                    self.exercise == ""
                     return 
             else:
                 self.exercise = exercise_name
             return
 
     def set_rule(self):
+        if self.exercise == "":
+            return
         clear_screen()
         print("Choose a rule\n1. Every day\n2. Every second day\n3."
         " Once a week\n4. Twice a week\n5. Three times a week\n6. "
@@ -57,9 +60,9 @@ class StreakConditions:
         return
 
     def save_streak_conditions(self):
-        streak_conditions = self.exercise + "," + self.rule + "\n"
+        streak_conditions = self.exercise + "," + str(self.rule) + "\n"
         rule_list = ["every day", "six times a week", "five times a week", "four times a week", 
-        "three times a week", "twice a week", "once a week", "every second day"]
+        "three times a week", "twice a week", "once a week", "", "every second day"]
         print(self.exercise + ", " + rule_list[self.rule])
         user_input = input("Confirm new streak conditions? Y/N ")
         if user_input.lower() == "y":
@@ -70,7 +73,7 @@ class StreakConditions:
                 constants.STREAK_CONDITIONS[self.exercise] = self.rule
                 with open("streakconditions.csv", "w") as file:
                     for key in constants.STREAK_CONDITIONS:
-                        file.write(key + "," + constants.STREAK_CONDITIONS[key] + "\n")
+                        file.write(key + "," + str(constants.STREAK_CONDITIONS[key]) + "\n")
                 return
         else:
             return
