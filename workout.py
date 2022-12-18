@@ -2,7 +2,7 @@ import os
 import csv
 import constants
 from getsaveddata import get_last_log_date
-from menufunctions import quit_function
+from menufunctions import quit_function, clear_screen
 from currentstreaks import CurrentStreaksAlert
 
 
@@ -46,7 +46,7 @@ class Workout:
             return
 
     def show_workout(self):
-        os.system('clear')
+        clear_screen()
         for key, value in self.workout_dict.items():
             print(key, value)
 
