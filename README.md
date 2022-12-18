@@ -2,12 +2,11 @@
 Terminal app for tracking exercise type, repetitions and duration
 
 ## References
+### Code style guide
+van Rossum, G., Warsaw, B. and Coghlan, N. (2013). *PEP 8 – Style Guide for Python Code*. [online] python.org. Available at: https://peps.python.org/pep-0008/ [Accessed 15 Dec. 2022].
 
 ## Link to repository
 https://github.com/radiantbutterfly/DailyExercise
-
-## Code style guide
-van Rossum, G., Warsaw, B. and Coghlan, N. (2013). *PEP 8 – Style Guide for Python Code*. [online] python.org. Available at: https://peps.python.org/pep-0008/ [Accessed 15 Dec. 2022].
 
 ## Features
 ### Add workouts
@@ -67,6 +66,20 @@ Then navigate into the folder containing DailyExercise and run setup.sh. This wi
 ### Running DailyExercise
 Once setup has been completed, you will be able to run DailyExercise by running dailyexercise.sh
 
+### Requirements
+Python 3
+attrs 22.1.0
+exceptiongroup 1.0.4
+iniconfig 1.1.1
+numpy 1.23.5
+packaging 22.0
+pandas 1.5.2
+pluggy 1.0.0
+pytest 7.2.0
+python-dateutil 2.8.2
+pytz 2022.6
+six 1.16.0
+tomli 2.0.1
 ## Testing
 Testing can be done with pytest, which will find and execute run_test.py. Before testing, it is necessary to run generate_test_files.py to generate mock data for testing. The tests will fail if performed on blank log files or real user data.
 

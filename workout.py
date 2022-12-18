@@ -36,7 +36,7 @@ class Workout:
                     # Remove number and extra space from end of exercise name
                     exercise_name = user_input[:-(len(number) + 1)]
                     if exercise_name not in constants.EXERCISE_LIST:
-                        print("Error: Enter a valid exercise type and number.")
+                        print("Error: Enter a valid exercise type and a number.")
                     elif not number.isnumeric():
                         print("Error: Exercise reps or duration must be numeric.")
                     else:
