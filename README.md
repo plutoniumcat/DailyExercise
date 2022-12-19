@@ -8,6 +8,9 @@ van Rossum, G., Warsaw, B. and Coghlan, N. (2013). *PEP 8 – Style Guide for Py
 ## Link to repository
 https://github.com/radiantbutterfly/DailyExercise
 
+## Link to presentation
+https://youtube.com/watch?v=UJK0-wscmeE&feature=shares
+
 ## Features
 ### Add workouts
 With DailyExercise, users can log their workouts for tracking. After selecting "Log today's workout" from the main menu, users will be prompted to enter an exercise and the number of reps or the duration in minutes. For example, "push up 15" will log 15 push ups and "yoga 20" will log 20 minutes of yoga. The user can continue adding as many exercises as they want, or type 'f' to indicate that they are finished. They will then be prompted to save the workout, edit the workout, or quit. If they choose to save the workout, it will be added to a .csv file for later access.
