@@ -69,10 +69,13 @@ class CurrentStreak:
         return len(history)
 
     def find_current_streak_length(self):
-        last_log_date = last_log_date_datetime()
+        # Find last log date
+        log = pandas.read_csv(self.log)
+        log_dates = log["DATE"].tolist()
         # If there are no previous logs return 0
-        if last_log_date == 0:
+        if len(log_dates) == 0:
             return 0
+        last_log_date = datetime.strptime(log_dates[-1], "%Y-%m-%d")
         # Get all history for selected exercise then reverse it
         log = pandas.read_csv(self.log)
         exercise_history = log[self.exercise].tolist()
@@ -110,6 +113,9 @@ class CurrentStreak:
             if zero_counter == (self.rule + 1):
                 break
             cursor2 += 1
+        # Fix off by one error
+        if cursor2 > len(log_dates):
+            cursor2 -= 1
         # cursor2 now contains the length of the streak in days
         return cursor2
 
