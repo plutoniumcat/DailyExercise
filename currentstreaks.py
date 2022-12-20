@@ -75,6 +75,9 @@ class CurrentStreak:
         # Get all history for selected exercise then reverse it
         log = pandas.read_csv(self.log)
         exercise_history = log[self.exercise].tolist()
+        # Remove empty list item that causes pytest tests to fail
+        if not exercise_history[-1] and exercise_history[-1] != 0:
+            del exercise_history[-1]
         exercise_history.reverse()
         # If streak rule is "every second day", evaluate the log against that rule
         if self.rule == 8:
