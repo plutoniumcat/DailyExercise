@@ -14,8 +14,9 @@ class CurrentStreaksAlert:
         streaks_list = []
         for exercise in self.exercise_list:
             streak = CurrentStreak(constants.DEFAULT_CSV, constants.STREAK_CONDITIONS, exercise, "")
-            if streak.current_streak():
-                streaks_list.append(streak.current_streak())
+            current_streak = streak.current_streak()
+            if current_streak:
+                streaks_list.append(current_streak)
         if streaks_list == []:
             print("No current streaks")
         else:
@@ -49,8 +50,8 @@ class CurrentStreak:
 
     def test_week(self, history, cursor2, cursor1):
         # Extracts one week from the history based on the cursor position and tests it against the streak rule
+        zero_counter = 0
         for i in range(cursor2, cursor1 + 1):
-            zero_counter = 0
             if history[i] == 0:
                 zero_counter += 1
             if zero_counter > self.rule:
@@ -75,9 +76,6 @@ class CurrentStreak:
         # Get all history for selected exercise then reverse it
         log = pandas.read_csv(self.log)
         exercise_history = log[self.exercise].tolist()
-        # Remove empty list item that causes pytest tests to fail
-        if not exercise_history[-1] and exercise_history[-1] != 0:
-            del exercise_history[-1]
         exercise_history.reverse()
         # If streak rule is "every second day", evaluate the log against that rule
         if self.rule == 8:
@@ -101,19 +99,16 @@ class CurrentStreak:
                 else:
                     break
         # Continue moving cursor2 forward until the break is found
-        try:
-            for i in range(6):
-                zero_counter = 0
-                for i in range(self.rule + 1):
+        for i in range(6):
+            zero_counter = 0
+            for i in range(self.rule + 1):
+                try:
                     if exercise_history[(cursor2 + i)] == 0:
                         zero_counter += 1
-                if zero_counter == (self.rule + 1):
-                    break
-                cursor2 += 1
-        except IndexError:
-            pass
-        # Fix off by one error
-        if self.rule > 0 and self.rule < 8:
+                except IndexError:
+                    pass
+            if zero_counter == (self.rule + 1):
+                break
             cursor2 += 1
         # cursor2 now contains the length of the streak in days
         return cursor2
@@ -139,7 +134,8 @@ class CurrentStreak:
 
     def check_for_streak(self):
         self.set_exercise()
-        if self.current_streak():
-            print(self.current_streak())
+        streak = self.current_streak()
+        if streak:
+            print(streak)
         else:
             print("No current streak for " + self.exercise + ".")
